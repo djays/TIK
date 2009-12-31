@@ -22,8 +22,11 @@ u16int inw(u16int port)
    return ret;
 }
 
+
+
 void delay(u16int n)
 {
  
 }
  
+

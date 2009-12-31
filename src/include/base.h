@@ -26,4 +26,14 @@ u16int inw(u16int port);
 // Cause Delay of n millisec
 void delay(u16int n);
 
+// Stack after ISR execution
+struct regs
+{
+    unsigned int gs, fs, es, ds;
+    unsigned int edi, esi, ebp, esp, ebx, edx, ecx, eax;
+    unsigned int int_no, err_code;
+    unsigned int eip, cs, eflags, useresp, ss;    
+};
+
+
 #endif // BASE_H

@@ -1,9 +1,9 @@
 #include "screen.h"
 #include "stdlib.h"
-
+#include "base.h"
 // make a pointer to the screen buffer
 // video buffer starts at 0xB8000 
-u16int *screen_buf = (u16int *)0xB8000;
+u16int *screen_buf;
 
 // store cursor's x and y position
 u8int pos_x = 0;
@@ -16,7 +16,6 @@ u8int temp2 = 0;
 // color attribute is 8 bit with higher 4 bits representing
 // background color and lower 4 bits color of char
 u8int color_attr = 0x0F;
-
 // send cursor's location to VGA board
 void set_cursor()
 {
@@ -161,6 +160,12 @@ void clear()
     set_cursor();
 }
 
+void init_video()
+{
+    screen_buf = (u16int *)0xB8000;
+    clear();
+
+}
 // prints a NULL terminated string on the screen
 void puts(char * c)
 {
