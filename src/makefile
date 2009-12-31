@@ -2,24 +2,23 @@
 # The only one that needs changing is the assembler 
 # rule, as we use nasm instead of GNU as.
 
-
-SOURCES=boot.o main.o base.o screen.o string.o mem.o stdlib.o gdt.o idt.o isr.o
 CFLAGS=-Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -c -I./include
-LDFLAGS=-Tlink.ld
-ASFLAGS=-felf
+LINKERFLAGS=-Tlink.ld
+ASMFLAGS=-felf
+ASSEMBLER= nasm $(ASMFLAGS) 
+LINKER= ld $(LINKERFLAGS) 
 
-all: $(SOURCES) link
+OBJECTS=boot.o main.o base.o screen.o string.o mem.o stdlib.o gdt.o idt.o dt.o isr.o isrs.o
+
+all: $(OBJECTS) link
 	-rm -f *.o
 clean:
 	-rm -f *.o *~ include/*~ ../iso/boot/kernel ../*.iso
 link:
-	ld $(LDFLAGS) -o ../iso/boot/kernel $(SOURCES) dtasm.o israsm.o
+	$(LINKER) -o ../iso/boot/kernel $(OBJECTS)
 
-.s.o:
-	nasm $(ASFLAGS) $<
-	nasm $(ASFLAGS) dt.asm -o  dtasm.o
-	nasm $(ASFLAGS) isr.asm -o israsm.o
-    
+%.o: %.asm	
+	$(ASSEMBLER) -o $*.o $*.asm    
 
 iso:
 	-rm -f ../*.iso
