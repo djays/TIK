@@ -8,7 +8,7 @@ ASMFLAGS=-felf
 ASSEMBLER= nasm $(ASMFLAGS) 
 LINKER= ld $(LINKERFLAGS) 
 
-OBJECTS=boot.o main.o base.o screen.o string.o mem.o stdlib.o gdt.o idt.o dt.o isr.o isrs.o
+OBJECTS=boot.o main.o base.o screen.o string.o mem.o stdlib.o gdt.o idt.o dt.o isr.o isrs.o irqs.o irq.o timer.o
 
 all: $(OBJECTS) link
 	-rm -f *.o

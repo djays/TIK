@@ -1,7 +1,8 @@
-#include "screen.h"
-#include "string.h"
-#include "gdt.h"
-
+#include <screen.h>
+#include <string.h>
+#include <gdt.h>
+#include <idt.h>
+#include <timer.h>
 
 int main()
 {
@@ -9,9 +10,10 @@ int main()
     idt_setup();
     isr_setup();
     init_video();
-    puts(" TIK \n");
-    put(1/0);
-    puts(" Check \n");
+    irq_setup();
+    __asm__ __volatile__ ("sti");
+    timer_setup();
+    puts(" Welcome to TIK! \n");
     for (;;);
     
     return 0;

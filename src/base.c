@@ -23,10 +23,3 @@ u16int inw(u16int port)
 }
 
 
-
-void delay(u16int n)
-{
- 
-}
- 
-

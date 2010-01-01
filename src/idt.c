@@ -20,7 +20,7 @@ void idt_setup()
     idtp.base = (unsigned int) &idt;
 
     /* Initialize entire IDT to 0 */
-    memset(&idt, 0, sizeof(struct idt_entry) * 256);
+    memset((unsigned char *)&idt, 0, sizeof(struct idt_entry) * 256);
 
     /* Place for new ISRs using idt_set_gate*/
     /* defined later after loading*/
