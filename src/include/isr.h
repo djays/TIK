@@ -2,41 +2,7 @@
 #define __ISR_H
 #include<base.h>
 
-char *exception_message[] =
-{
-    " 0: Divide By Zero Exception",
-    " 1: Debug Exception",         
-    " 2: Non Maskable Interrupt Exception",
-    " 3: Int 3 Exception",                 
-    " 4: INTO Exception",                  
-    " 5: Out of Bounds Exception",         
-    " 6: Invalid Opcode Exception",        
-    " 7: Coprocessor Not Available Exception",
-    " 8: Double Fault Exception ",
-    " 9: Coprocessor Segment Overrun Exception",    
-    "10: Bad TSS Exception ",     
-    "11: Segment Not Present Exception ",
-    "12: Stack Fault Exception ",        
-    "13: General Protection Fault Exception ",
-    "14: Page Fault Exception ",              
-    "15: Reserved Exception",                                   
-    "16: Floating Point Exception",                             
-    "17: Alignment Check Exception",                            
-    "18: Machine Check Exception",                              
-    "19: Reserved",                                             
-    "20: Reserved",
-    "21: Reserved",
-    "22: Reserved",
-    "23: Reserved",
-    "24: Reserved",
-    "25: Reserved",
-    "26: Reserved",
-    "27: Reserved",
-    "28: Reserved",
-    "29: Reserved",
-    "30: Reserved",
-    "31: Reserved"
-};
+
 
 /* Set the Interrupt Service Routines */
 void isr_setup();

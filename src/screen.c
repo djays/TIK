@@ -79,13 +79,8 @@ void put(char c)
     // check for backspace
     
     // Convert number into Standard form
-    int num = (int)c;
-    if (num>=0 && num<=9)
-    {
-        num+=48;
-        c = (char)num;
-    }
-    if ( c == 0x80 )
+    
+    if ( c == '\b' )
     {
         // if we are not at first position in line move cursor 1 space back
         // else do nothing
@@ -95,12 +90,12 @@ void put(char c)
         }
     }
     // else if char is a tab
-    else if ( c == 0x09 )
+    else if ( c == '\t' )
     {
         // increase cursor's position in multiples of 8
         // we take tab to be of 8 spaces
         u8int val = pos_x / 8; // get current int position
-        pos_x = pos_x * 8 + 8; // increase by 8
+        pos_x = val* 8 + 8; // increase by 8
     }
     // else if char is \r
     else if ( c == '\r' )
@@ -121,6 +116,12 @@ void put(char c)
         // all printable char are present above space/blank 
         // here we set the give car at current position and move
         // one place ahead
+        unsigned int num = (unsigned int)c;
+        if (num>=0 && num<=9 )
+        {
+            num+=48;
+            c = (char)num;
+        }
         u16int *position;
         position = screen_buf + ( pos_y * 80 + pos_x ); // get screen position
         *position = c | ( color_attr << 8 ); // store char at position

@@ -7,10 +7,10 @@ int timer_ticks = 0;
 void timer_handler(struct regs *r)
 {
     timer_ticks++;              // 1 Tick is every 0.0548 second
-    if (timer_ticks % 36 == 0)  // 18 Ticks ~  1 Second
-    {
+    /*if (timer_ticks % 36 == 0)  // 18 Ticks ~  1 Second
+    /{
     puts("2sec\n");
-    }
+    }*/
 }
 
 void timer_wait(int ticks)

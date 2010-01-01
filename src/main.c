@@ -1,8 +1,10 @@
 #include <screen.h>
 #include <string.h>
 #include <gdt.h>
+#include <isr.h>
 #include <idt.h>
 #include <timer.h>
+#include <keyboard.h>
 
 int main()
 {
@@ -13,6 +15,7 @@ int main()
     irq_setup();
     __asm__ __volatile__ ("sti");
     timer_setup();
+    keyboard_setup();
     puts(" Welcome to TIK! \n");
     for (;;);
     
